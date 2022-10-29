@@ -53,6 +53,7 @@ describe('Testes da Funcionalidade Produtos', () => {
 
     it('Deve editar um produto já cadastrado', () => {
         cy.request('produtos').then(response => {
+            let produto = `Produto EBAC ${Math.floor(Math.random() * 100000000)}`
             let id = response.body.produtos[0]._id
             cy.request({
                 method: 'PUT', 
@@ -60,7 +61,7 @@ describe('Testes da Funcionalidade Produtos', () => {
                 headers: {authorization: token}, 
                 body: 
                 {
-                    "nome": "Produto Editado 45642083",
+                    "nome":produto,
                     "preco": 100,
                     "descricao": "Produto editado",
                     "quantidade": 100
