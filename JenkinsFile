@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar repositorio') {
+            steps {
+                git branch: 'main', url: 'https://github.com/PeuAlbuquerque/Automacao-API.git'
+            }
+        }
+        stage('Instalar dependencais') {
+            steps {
+                bat 'npm install'
+            }
+        }
+        stage('Start-server-and-test') {
+            steps {
+                bat 'npm run ci'
+            }
+        }
+    }
+}
